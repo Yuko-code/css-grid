@@ -1,0 +1,223 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    font-size: 40px;
+    width:100%;
+    min-height: 100vh;
+}
+
+[class^="box-"]{
+    background-color:skyblue;
+    display:grid;/*centering the texts*/
+    place-items:center;
+}
+hr{
+    border: 2px solid;
+}
+/*grid-template-columns*/
+.container1{
+    display:grid;
+    gap:20px;/*this is grid property if no grid it doesn't work*/
+    grid-template-columns: 100px 300px auto 200px; 
+}
+/*grid-template-rows*/
+.container2{
+    height:500px;
+    display:grid;
+    gap:20px;/*this is grid property if no grid it doesn't work*/
+    grid-template-rows: 100px 200px auto 80px; 
+}
+
+/*you may get confused with grid-template-rows and grid-template-columns*/
+/*use grid-template-area*/
+.container3{
+    height:500px;
+    display:grid;
+    grid-gap:20px;
+    grid-template-areas:
+    "A A A A    A A A A    A A A A"
+    "B B B B    B B B B    B B C C"
+    "B B B B    B B B B    B B C C";
+}
+
+.b1{
+    grid-area:A;
+}
+
+.b2{
+    grid-area:B;
+}
+
+.b3{
+    grid-area:C;
+}
+/*short-hand*/
+
+.container4{
+    height:800px;
+    display:grid;
+    grid-gap:20px;
+    grid-template:100px 200px/ 200px 400px;/* row/column */
+}
+.container5{
+    height:100vh;/*set height 100vh in order to make grid-template works*/
+    display:grid;
+    grid-gap:20px;
+    grid-template:repeat(2,1fr) / repeat(2,1fr);/* row/column */
+}
+
+/*gaps*/
+.container6{
+    height:100vh;/*set height 100vh in order to make grid-template works*/
+    display:grid;
+    grid-template:repeat(2,1fr) / repeat(2,1fr);/* row/column */
+    column-gap:50px;
+    /*grid lines exist int he middle of gap*/
+    /*if the gap is 50px it divids intot 25px and 25px*/
+    row-gap:100px;
+}
+/*gaps shorthand*/
+.container7{
+    height:100vh;/*set height 100vh in order to make grid-template works*/
+    display:grid;
+    grid-template:repeat(2,1fr) / repeat(2,1fr);
+    gap: 20px 40px;/* row/column */
+}
+
+/*justify-items justify-content X axis*/
+.container8{
+    height:500px;
+    display:grid;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    gap: 20px 20px;/* row/column */
+    /*justify items works in x axis(column)*/
+    justify-items: stretch;/* <--change here to experiment start center end stretch*/
+     /*justify content moves whole thing*/
+    justify-content:center; /*<--change here to experiment start center end stretch*/
+}
+/*justify-content has three more values--> space-between / space-around / space-evenly */
+.container9{
+    height:700px;
+    display:grid;
+    gap:10px;
+    grid-template:repeat(3,200px) / repeat(2,200px);
+    justify-content:space-evenly; /*<--change here to experiment*/
+}
+
+/*align-items  y axis*/
+.container10{
+    height:100vh;
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    align-items:start;/*-->change here center/start/end/stretch **/
+}
+
+/*align-content*/
+.container11{
+    height:100vh;
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    align-content:center;/*-->change here center/start/end/stretch **/
+}
+
+.container12{
+    height:100vh;
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(3,200px) / repeat(2,200px);
+    align-content:space-around;/*-->change here space-between/space-around/space-evenly **/
+}
+
+/*place-items container14 is shorthand of container13*/
+.container13{
+    height:400px;
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    justify-items:center; 
+    align-items:center;
+}
+
+.container14{
+    height:400px;   /* container 13 and 14 show same results*/
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    place-items: center; /*start/end/center/stretch*/
+}
+
+/*place-content continaer 16 is shorthand of container 15*/
+.container15{
+    height:100vh;   /* container 15 and 16 show same results*/
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    justify-content:space-between;
+    align-content:space-between;
+}
+
+.container16{
+    height:100vh;   /* container 13 and 14 show same results*/
+    display:grid;
+    grid-gap:10px;
+    grid-template:repeat(2,200px) / repeat(2,200px);
+    place-content:space-between;
+}
+
+/*Grid Scale below works for children property*/
+.container17{
+    background-color:grey;
+    height:100vh;   /* container 13 and 14 show same results*/
+    display:grid;
+    grid-gap:20px;
+   grid-template-columns: repeat(12, 1fr);
+   grid-template-rows: repeat(12, 1fr);
+   /*shothand is grid-template: repeat(2, 100px)/repeat(2, 100px)*/
+}
+
+.boxA{
+    /* i want A to be 100% width
+    grid-column-start:1;
+    grid-column-end: 13;   /*12+1*/
+   /* grid-column:1/13;*/
+
+   /*this is bettwer way*/
+   grid-column:span 12;
+}
+/*grid-row works in y-axis*/
+.boxB{
+    grid-row:span 6;
+}
+
+/*justify-self and align-self*/
+
+.container18{
+    background-color:grey;
+    height:100vh;  
+    display:grid;
+    grid-gap:25px;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+}
+/* justify-self works in x axis */
+.box-A{
+    justify-self:center; /*start/end/center/stretch*/
+}
+/* align-self works in xy axis */
+.box-B{
+    align-self:end;
+}
+
+/*shorhand*/
+.box-C{
+    place-self: center;
+}
+
+
